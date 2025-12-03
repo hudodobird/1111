@@ -1,35 +1,40 @@
-import time as t
+import random
 
-# start = t.time()
+letters = "abcdefjhijklmnopqrstuvwxyz"
+randomletters = ""
 
-# my_gen = (num for num in range(2, 1000000) if all(num % i != 0 for i in range(2, int(num ** 0.5) + 1)))
-# largestprime = -1
-# for val in my_gen:
-#     if val > largestprime:
-#         largestprime = val
+
+def generateletters(randomletters):
+    randomint = random.randint(1, 10)
+    for i in range(randomint):
+        randomnum = random.randint(0, len(letters) - 1)
+        randomletters = randomletters + letters[randomnum]
+    return randomletters
+
+def validateAnswer(randomletters, answer):
+
+    for letter in answer:
+        if letter not in randomletters:
+            return "Invalid answer"
+        else:
+            pass
+
+    return len(answer)
+
+
+
+# def validateAnswer(randomLetters, answer):
+#     for letters in answer:
+#         if letters not in randomLetters:
+#             return 0
+#         else:
+#             pass
     
-# end = t.time()
+#     return len(answer)
 
-# elapsed = end - start
+generated = generateletters(randomletters)
+print(generated)
 
-# print(largestprime)
-# print(elapsed)
+answer = input("Enter your answer: ")
 
-primes = []
-def prime_checker(n):
-    start = t.time()
-    for num in range(2, n):
-        is_prime = True
-        for i in range(2, int(num ** 0.5) + 1):
-            if num % i == 0:
-                is_prime = False
-                break
-        if is_prime:
-            primes.append(num)
-    end = t.time()
-    elapsed = end - start
-    return primes, elapsed
-
-number = int(input("Enter a number: "))
-prime_numbers, elapsed = prime_checker(number)
-print(elapsed)
+print(validateAnswer(generated, answer))
